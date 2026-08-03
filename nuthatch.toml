@@ -1,0 +1,26 @@
+[nest]
+name = "uniswap-v4"
+chain = "mainnet"
+chain_id = 1
+# Measured 2026-08-03 against the RFC-0030 §4 bar (archive depth, JSON-RPC batch > 3). All five
+# below pass both. Deliberately NOT listed: eth.drpc.org (free plan caps batches at 3, so the
+# block-timestamp fetcher can never complete a window — it retries forever without progressing),
+# rpc.ankr.com/eth and eth.llamarpc.com (no usable response at all).
+#
+# These are free endpoints and they rate-limit under a sustained backfill. For real history use
+# your own archive node — see the README; the URL belongs in your environment, not in this file.
+rpc_urls = [
+    "https://eth.api.onfinality.io/public",
+    "https://ethereum-rpc.publicnode.com",
+    "https://rpc.flashbots.net",
+    "https://1rpc.io/eth",
+    "https://eth-pokt.nodies.app",
+]
+schema_version = 1
+block_timestamps = true
+
+[[contracts]]
+alias = "pool_manager"
+address = "0x000000000004444c5dc75cb358380d2e3de08a90"
+start_block = 21688329
+abi = "abis/pool_manager.json"

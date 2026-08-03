@@ -1,0 +1,191 @@
+# semantic.toml - what this nest's data *means* (RFC-0016). Read by the MCP `schema`
+# tool, the admin UI, and the scaffolded skill. Edit descriptions freely; the
+# `[table.*.footguns]` are DERIVED from the ABI and regenerated - leave them be.
+
+schema_version = 1
+
+[nest]
+description = """
+Uniswap V4 on Ethereum mainnet — the singleton PoolManager at 0x000000000004444c5dc75cB358380D2e3dE08A90.
+
+The thing to understand before writing any query: V4 has NO per-pool contracts and NO factory.
+Every pool lives inside one contract and is identified by a `bytes32` PoolId. Unlike a V3 nest
+there are no dynamic children to discover — one static contract carries the entire protocol, which
+is why this nest has no [[factories]] block at all.
+
+Scale: the PoolManager emits roughly 17 events per mainnet block. Full history from the V4
+deployment (block 21688329) is ~68M events. Filter by block range or pool id; a bare
+`SELECT * FROM pool_manager__swap` is not a sensible query here.
+"""
+
+[table.pool_manager__approval]
+description = "ERC-6909 claim-token approval. Same ledger as pool_manager__transfer, not pool ownership."
+grain = "one row per approval"
+
+[table.pool_manager__approval.columns]
+amount = "The `amount` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+id = "The `id` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+owner = "The `owner` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+spender = "The `spender` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.pool_manager__approval.footguns]
+big_ints = [
+    "id",
+    "amount",
+]
+overflows_dec = [
+    "id",
+    "amount",
+]
+
+[table.pool_manager__donate]
+description = "A direct donation of tokens to a pool's in-range liquidity providers, bypassing a swap."
+grain = "one row per donation"
+
+[table.pool_manager__donate.columns]
+amount0 = "The `amount0` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+amount1 = "The `amount1` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+id = "The `id` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+sender = "The `sender` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.pool_manager__donate.footguns]
+big_ints = [
+    "amount0",
+    "amount1",
+]
+overflows_dec = [
+    "amount0",
+    "amount1",
+]
+
+[table.pool_manager__initialize]
+description = "A new pool created inside the singleton. The only place a pool's immutable key — currencies, fee, tick spacing, hooks — is ever emitted, so it is the lookup table everything else joins against."
+grain = "one row per pool, ever"
+
+[table.pool_manager__initialize.columns]
+currency0 = "Lower-sorted token. 0x0000…0000 means NATIVE ETH, which V4 supports directly rather than via WETH."
+currency1 = "Higher-sorted token."
+fee = "Static LP fee in hundredths of a bip. 8388608 (0x800000) is the DYNAMIC_FEE_FLAG, not a real fee — that pool's fee is set per-swap by its hook."
+hooks = "The hook contract, or the zero address for a plain pool. Fixed at creation and part of the pool key, so it can never change."
+id = "The PoolId: keccak of the pool key. Not an address — pools have no address in V4."
+sqrtPriceX96 = "The `sqrtPriceX96` uint160 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+tick = "The `tick` int24 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+tickSpacing = "Minimum tick granularity for positions in this pool."
+
+[table.pool_manager__initialize.footguns]
+big_ints = ["sqrtPriceX96"]
+overflows_dec = ["sqrtPriceX96"]
+
+[table.pool_manager__modify_liquidity]
+description = "Liquidity added to or removed from a position. V4 has no NFT at this layer — positions are keyed by (sender, tickLower, tickUpper, salt)."
+grain = "one row per liquidity change"
+
+[table.pool_manager__modify_liquidity.columns]
+id = "The `id` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+liquidityDelta = "Signed: positive adds, negative removes. Not a token amount — it is liquidity in the Uniswap sense."
+salt = "Lets one sender hold several distinct positions over the same tick range."
+sender = "The `sender` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+tickLower = "The `tickLower` int24 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+tickUpper = "The `tickUpper` int24 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.pool_manager__modify_liquidity.footguns]
+big_ints = ["liquidityDelta"]
+overflows_dec = ["liquidityDelta"]
+
+[table.pool_manager__operator_set]
+description = "ERC-6909 operator authorisation — a blanket approval over an owner's claim tokens."
+grain = "one row per operator change"
+
+[table.pool_manager__operator_set.columns]
+approved = "The `approved` bool parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+operator = "The `operator` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+owner = "The `owner` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.pool_manager__ownership_transferred]
+description = "`OwnershipTransferred(address,address)` events emitted by the `pool_manager` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per OwnershipTransferred(address,address) event"
+
+[table.pool_manager__ownership_transferred.columns]
+newOwner = "The `newOwner` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+user = "The `user` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.pool_manager__ownership_transferred.footguns]
+reserved_words = ["user"]
+
+[table.pool_manager__protocol_fee_controller_updated]
+description = "The address allowed to set protocol fees was changed. Governance-level, rare."
+grain = "one row per controller change"
+
+[table.pool_manager__protocol_fee_controller_updated.columns]
+protocolFeeController = "The `protocolFeeController` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.pool_manager__protocol_fee_updated]
+description = "The protocol's cut for one pool being changed by the fee controller. Distinct from the LP fee that hooks and pool keys control."
+grain = "one row per protocol-fee change"
+
+[table.pool_manager__protocol_fee_updated.columns]
+id = "The `id` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+protocolFee = "The `protocolFee` uint24 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.pool_manager__swap]
+description = "A swap against one pool. The busiest table in this nest by a wide margin."
+grain = "one row per swap"
+
+[table.pool_manager__swap.columns]
+amount0 = "SIGNED from the pool's perspective: negative = the pool paid out, positive = took in. The two amounts always have opposite signs, so summing them nets to ~zero — use abs() for volume."
+amount1 = "See amount0. Signed, pool's perspective."
+fee = "The fee actually charged on THIS swap. For dynamic-fee pools this is the real value; the pool's static `fee` is only a flag."
+id = "The `id` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+liquidity = "Active in-range liquidity after the swap."
+sender = "The `sender` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+sqrtPriceX96 = "Pool price after the swap, as sqrt(price) × 2^96. Converting to a human ratio needs both tokens' decimals — a client-side join, not something this nest can do."
+tick = "The pool's tick after the swap."
+
+[table.pool_manager__swap.footguns]
+big_ints = [
+    "amount0",
+    "amount1",
+    "sqrtPriceX96",
+    "liquidity",
+]
+overflows_dec = ["sqrtPriceX96"]
+
+[table.pool_manager__transfer]
+description = "ERC-6909 claim-token movement. V4 lets you hold a balance inside the PoolManager instead of settling to ERC-20 every time — this is that ledger, NOT pool-token transfers."
+grain = "one row per claim-token movement"
+
+[table.pool_manager__transfer.columns]
+amount = "The `amount` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+caller = "The `caller` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+from = "The `from` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+id = "The `id` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+to = "The `to` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.pool_manager__transfer.footguns]
+reserved_words = [
+    "from",
+    "to",
+]
+big_ints = [
+    "id",
+    "amount",
+]
+overflows_dec = [
+    "id",
+    "amount",
+]
+
+[view.hook]
+description = "Per-hook adoption: how many pools each hook contract backs. This view has no V3 equivalent."
+
+[view.hook_adoption]
+description = "The headline split — what fraction of V4 pools use a hook at all."
+
+[view.pool]
+description = "Pool entity with its immutable key, plus derived has_hook and fee_is_dynamic flags."
+
+[view.pool_activity]
+description = "Per-pool swap counts and absolute volume, joined to the pool key. Volume uses abs() because raw amounts are signed."
+
+[view.pool_liquidity]
+description = "Per-pool liquidity provision: net delta, added, removed, and distinct providers."

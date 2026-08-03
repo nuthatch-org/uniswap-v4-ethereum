@@ -1,0 +1,31 @@
+# nuthatch nest on mainnet
+
+A self-hosted blockchain index. Query it locally; there is no third-party API.
+
+## Contracts
+- `pool_manager` = 0x000000000004444c5dc75cb358380d2e3de08a90
+
+## Tables (one per contract event)
+- `pool_manager__approval` - Approval(address,address,uint256,uint256) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, owner, spender, id, amount)
+- `pool_manager__donate` - Donate(bytes32,address,uint256,uint256) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, id, sender, amount0, amount1)
+- `pool_manager__initialize` - Initialize(bytes32,address,address,uint24,int24,address,uint160,int24) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, id, currency0, currency1, fee, tickSpacing, hooks, sqrtPriceX96, tick)
+- `pool_manager__modify_liquidity` - ModifyLiquidity(bytes32,address,int24,int24,int256,bytes32) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, id, sender, tickLower, tickUpper, liquidityDelta, salt)
+- `pool_manager__operator_set` - OperatorSet(address,address,bool) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, owner, operator, approved)
+- `pool_manager__ownership_transferred` - OwnershipTransferred(address,address) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, user, newOwner)
+- `pool_manager__protocol_fee_controller_updated` - ProtocolFeeControllerUpdated(address) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, protocolFeeController)
+- `pool_manager__protocol_fee_updated` - ProtocolFeeUpdated(bytes32,uint24) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, id, protocolFee)
+- `pool_manager__swap` - Swap(bytes32,address,int128,int128,uint160,uint128,int24,uint24) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, id, sender, amount0, amount1, sqrtPriceX96, liquidity, tick, fee)
+- `pool_manager__transfer` - Transfer(address,address,address,uint256,uint256) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, caller, from, to, id, amount)
+
+## Live HTTP API (run `nuthatch dev`)
+- `GET /`                    index status
+- `GET /tables`              every table with its columns
+- `GET /table/{name}?limit=N` recent rows of one table (hot + sealed)
+- `GET /entity/{id}`         one row by id (`{block:012}-{logindex:06}`)
+- `GET /sql?q=SELECT...`     read-only SQL; each table is a view named `{alias}__{event}`
+- `GET /balances?limit=N`    top holder balances (when an ERC-20 Transfer table is present)
+- `GET /balance/{address}`   one address's derived balance
+
+## MCP (for coding agents)
+Run `nuthatch mcp` (stdio) to expose tools: status, schema, tables, table, sql, entity,
+balance, top_balances. Fully offline against the local instance; nothing phones home.

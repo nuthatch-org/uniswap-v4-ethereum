@@ -1,0 +1,10 @@
+[
+  {
+    "dec_overflow_swaps": 3,
+    "distinct_senders": 586,
+    "opposite_sign_swaps": 307368,
+    "pools_traded": 3552,
+    "swaps": 309340,
+    "zero_leg_swaps": 1969
+  }
+]

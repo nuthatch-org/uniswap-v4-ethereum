@@ -1,0 +1,763 @@
+{
+  "registry_hash": "0x0c85b921005899fa5aa1e6ad65294f6665bb61d57c1c171f9fe823c6167fc361",
+  "tables": [
+    {
+      "alias": "pool_manager",
+      "columns": [
+        {
+          "indexed": false,
+          "name": "block_number",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "block_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "block_timestamp",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "tx_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "log_index",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "address",
+          "sol_type": "implicit",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_seq",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": true,
+          "name": "owner",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": true,
+          "name": "spender",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": true,
+          "name": "id",
+          "sol_type": "uint256",
+          "storage": "word32"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "sol_type": "uint256",
+          "storage": "word32"
+        }
+      ],
+      "event": "Approval(address,address,uint256,uint256)",
+      "table": "pool_manager__approval",
+      "topic0": "0xb3fd5071835887567a0671151121894ddccc2842f1d10bedad13e0d17cace9a7"
+    },
+    {
+      "alias": "pool_manager",
+      "columns": [
+        {
+          "indexed": false,
+          "name": "block_number",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "block_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "block_timestamp",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "tx_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "log_index",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "address",
+          "sol_type": "implicit",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_seq",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": true,
+          "name": "id",
+          "sol_type": "bytes32",
+          "storage": "fixed_bytes"
+        },
+        {
+          "indexed": true,
+          "name": "sender",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount0",
+          "sol_type": "uint256",
+          "storage": "word32"
+        },
+        {
+          "indexed": false,
+          "name": "amount1",
+          "sol_type": "uint256",
+          "storage": "word32"
+        }
+      ],
+      "event": "Donate(bytes32,address,uint256,uint256)",
+      "table": "pool_manager__donate",
+      "topic0": "0x29ef05caaff9404b7cb6d1c0e9bbae9eaa7ab2541feba1a9c4248594c08156cb"
+    },
+    {
+      "alias": "pool_manager",
+      "columns": [
+        {
+          "indexed": false,
+          "name": "block_number",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "block_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "block_timestamp",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "tx_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "log_index",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "address",
+          "sol_type": "implicit",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_seq",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": true,
+          "name": "id",
+          "sol_type": "bytes32",
+          "storage": "fixed_bytes"
+        },
+        {
+          "indexed": true,
+          "name": "currency0",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": true,
+          "name": "currency1",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "fee",
+          "sol_type": "uint24",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "tickSpacing",
+          "sol_type": "int24",
+          "storage": "i64"
+        },
+        {
+          "indexed": false,
+          "name": "hooks",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "sqrtPriceX96",
+          "sol_type": "uint160",
+          "storage": "word32"
+        },
+        {
+          "indexed": false,
+          "name": "tick",
+          "sol_type": "int24",
+          "storage": "i64"
+        }
+      ],
+      "event": "Initialize(bytes32,address,address,uint24,int24,address,uint160,int24)",
+      "table": "pool_manager__initialize",
+      "topic0": "0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438"
+    },
+    {
+      "alias": "pool_manager",
+      "columns": [
+        {
+          "indexed": false,
+          "name": "block_number",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "block_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "block_timestamp",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "tx_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "log_index",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "address",
+          "sol_type": "implicit",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_seq",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": true,
+          "name": "id",
+          "sol_type": "bytes32",
+          "storage": "fixed_bytes"
+        },
+        {
+          "indexed": true,
+          "name": "sender",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "tickLower",
+          "sol_type": "int24",
+          "storage": "i64"
+        },
+        {
+          "indexed": false,
+          "name": "tickUpper",
+          "sol_type": "int24",
+          "storage": "i64"
+        },
+        {
+          "indexed": false,
+          "name": "liquidityDelta",
+          "sol_type": "int256",
+          "storage": "word32"
+        },
+        {
+          "indexed": false,
+          "name": "salt",
+          "sol_type": "bytes32",
+          "storage": "fixed_bytes"
+        }
+      ],
+      "event": "ModifyLiquidity(bytes32,address,int24,int24,int256,bytes32)",
+      "table": "pool_manager__modify_liquidity",
+      "topic0": "0xf208f4912782fd25c7f114ca3723a2d5dd6f3bcc3ac8db5af63baa85f711d5ec"
+    },
+    {
+      "alias": "pool_manager",
+      "columns": [
+        {
+          "indexed": false,
+          "name": "block_number",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "block_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "block_timestamp",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "tx_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "log_index",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "address",
+          "sol_type": "implicit",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_seq",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": true,
+          "name": "owner",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": true,
+          "name": "operator",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "approved",
+          "sol_type": "bool",
+          "storage": "bool"
+        }
+      ],
+      "event": "OperatorSet(address,address,bool)",
+      "table": "pool_manager__operator_set",
+      "topic0": "0xceb576d9f15e4e200fdb5096d64d5dfd667e16def20c1eefd14256d8e3faa267"
+    },
+    {
+      "alias": "pool_manager",
+      "columns": [
+        {
+          "indexed": false,
+          "name": "block_number",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "block_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "block_timestamp",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "tx_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "log_index",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "address",
+          "sol_type": "implicit",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_seq",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": true,
+          "name": "user",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": true,
+          "name": "newOwner",
+          "sol_type": "address",
+          "storage": "address"
+        }
+      ],
+      "event": "OwnershipTransferred(address,address)",
+      "table": "pool_manager__ownership_transferred",
+      "topic0": "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0"
+    },
+    {
+      "alias": "pool_manager",
+      "columns": [
+        {
+          "indexed": false,
+          "name": "block_number",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "block_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "block_timestamp",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "tx_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "log_index",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "address",
+          "sol_type": "implicit",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_seq",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": true,
+          "name": "protocolFeeController",
+          "sol_type": "address",
+          "storage": "address"
+        }
+      ],
+      "event": "ProtocolFeeControllerUpdated(address)",
+      "table": "pool_manager__protocol_fee_controller_updated",
+      "topic0": "0xb4bd8ef53df690b9943d3318996006dbb82a25f54719d8c8035b516a2a5b8acc"
+    },
+    {
+      "alias": "pool_manager",
+      "columns": [
+        {
+          "indexed": false,
+          "name": "block_number",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "block_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "block_timestamp",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "tx_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "log_index",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "address",
+          "sol_type": "implicit",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_seq",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": true,
+          "name": "id",
+          "sol_type": "bytes32",
+          "storage": "fixed_bytes"
+        },
+        {
+          "indexed": false,
+          "name": "protocolFee",
+          "sol_type": "uint24",
+          "storage": "u64"
+        }
+      ],
+      "event": "ProtocolFeeUpdated(bytes32,uint24)",
+      "table": "pool_manager__protocol_fee_updated",
+      "topic0": "0xe9c42593e71f84403b84352cd168d693e2c9fcd1fdbcc3feb21d92b43e6696f9"
+    },
+    {
+      "alias": "pool_manager",
+      "columns": [
+        {
+          "indexed": false,
+          "name": "block_number",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "block_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "block_timestamp",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "tx_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "log_index",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "address",
+          "sol_type": "implicit",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_seq",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": true,
+          "name": "id",
+          "sol_type": "bytes32",
+          "storage": "fixed_bytes"
+        },
+        {
+          "indexed": true,
+          "name": "sender",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount0",
+          "sol_type": "int128",
+          "storage": "word16"
+        },
+        {
+          "indexed": false,
+          "name": "amount1",
+          "sol_type": "int128",
+          "storage": "word16"
+        },
+        {
+          "indexed": false,
+          "name": "sqrtPriceX96",
+          "sol_type": "uint160",
+          "storage": "word32"
+        },
+        {
+          "indexed": false,
+          "name": "liquidity",
+          "sol_type": "uint128",
+          "storage": "word16"
+        },
+        {
+          "indexed": false,
+          "name": "tick",
+          "sol_type": "int24",
+          "storage": "i64"
+        },
+        {
+          "indexed": false,
+          "name": "fee",
+          "sol_type": "uint24",
+          "storage": "u64"
+        }
+      ],
+      "event": "Swap(bytes32,address,int128,int128,uint160,uint128,int24,uint24)",
+      "table": "pool_manager__swap",
+      "topic0": "0x40e9cecb9f5f1f1c5b9c97dec2917b7ee92e57ba5563708daca94dd84ad7112f"
+    },
+    {
+      "alias": "pool_manager",
+      "columns": [
+        {
+          "indexed": false,
+          "name": "block_number",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "block_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "block_timestamp",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "tx_hash",
+          "sol_type": "implicit",
+          "storage": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "log_index",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "address",
+          "sol_type": "implicit",
+          "storage": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_seq",
+          "sol_type": "implicit",
+          "storage": "u64"
+        },
+        {
+          "indexed": false,
+          "name": "caller",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": true,
+          "name": "from",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": true,
+          "name": "to",
+          "sol_type": "address",
+          "storage": "address"
+        },
+        {
+          "indexed": true,
+          "name": "id",
+          "sol_type": "uint256",
+          "storage": "word32"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "sol_type": "uint256",
+          "storage": "word32"
+        }
+      ],
+      "event": "Transfer(address,address,address,uint256,uint256)",
+      "table": "pool_manager__transfer",
+      "topic0": "0x1b3d7edb2e9c0b0e7c525b20aaaef0f5940d2ed71663c7d39266ecafac728859"
+    }
+  ]
+}

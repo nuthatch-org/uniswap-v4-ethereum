@@ -1,0 +1,9 @@
+[
+  {
+    "distinct_pool_ids": 1013,
+    "dynamic_fee_pools": 55,
+    "native_eth_pools": 384,
+    "pools": 1013,
+    "pools_with_hook": 323
+  }
+]
