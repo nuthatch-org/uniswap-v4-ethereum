@@ -1,13 +1,13 @@
 # Uniswap V4 nest — Ethereum mainnet
 
-A [nuthatch](https://github.com/nightswatchhq/nuthatch) indexer for **Uniswap V4** on Ethereum
+A [nuthatch](https://github.com/nuthatch-org/nuthatch) indexer for **Uniswap V4** on Ethereum
 mainnet: the singleton PoolManager at `0x000000000004444c5dc75cB358380D2e3dE08A90`.
 
 One Rust binary reads the chain over plain JSON-RPC and gives you a local SQL database plus an HTTP
 API. No Postgres, no Docker, no subgraph, no hosted service, no API key.
 
 ```sh
-cargo install --git https://github.com/nightswatchhq/nuthatch nuthatch
+cargo install --git https://github.com/nuthatch-org/nuthatch nuthatch
 cd uniswap-v4
 export RPC=https://your-mainnet-archive-node/     # keep the URL in your environment, not the repo
 
@@ -43,7 +43,7 @@ The `--backfill 20000` in the quickstart is deliberate: it gives you a working, 
 recent history in about two minutes. Full history is a genuine several-hour job and wants your own
 archive node, not a public endpoint.
 
-This is the opposite trade from a nest like [`poa-nest`](https://github.com/nightswatchhq/poa-nest),
+This is the opposite trade from a nest like [`poa-nest`](https://github.com/nuthatch-org/poa-nest),
 where the whole of history is 951 events and syncs in a minute. Here the *config* is trivial and the
 *volume* is the work.
 
